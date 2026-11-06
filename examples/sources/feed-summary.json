@@ -1,0 +1,19 @@
+{
+  "source_url": "https://www.souz-pribor.ru/yml/any/feed.xml",
+  "feed_date": "2026-11-03T08:10:26+03:00",
+  "offers_count": 47978,
+  "description_fields_count": 0,
+  "parameter_names": {
+    "Артикул": 42676,
+    "Код товара": 45630
+  },
+  "selected_product_urls": [
+    "https://www.souz-pribor.ru/product/testo-830-t1/",
+    "https://www.souz-pribor.ru/product/appa-62/"
+  ],
+  "data_preparation_note": "The feed contains identifiers, product names, type prefixes, vendors, URLs, images and prices, but no description fields. Prepare input JSON using factual excerpts and specification tables from the corresponding product pages. Keep source URLs and flag inconsistencies. The generation service must use only prepared input, not independently infer or retrieve specifications.",
+  "known_source_issues": [
+    "testo 830-T1: the short summary gives accuracy ±2%; the detailed table has temperature-dependent formulas. Do not collapse this into one universal accuracy.",
+    "APPA 62: the frequency accuracy row contains the text ±(0,01% +МГц 1 ед.счета); it appears malformed. Do not silently repair or use it as verified accuracy."
+  ]
+}

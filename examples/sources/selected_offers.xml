@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<selected_offers source="https://www.souz-pribor.ru/yml/any/feed.xml" feed_date="2026-11-03T08:10:26+03:00">
+  <offer id="64423" available="true">
+    <name>testo 830-T1</name>
+    <typePrefix>пирометр, инфракрасный термометр с лазерным целеуказателем</typePrefix>
+    <url>https://www.souz-pribor.ru/product/testo-830-t1/</url>
+    <categoryId>436</categoryId>
+    <vendor>Testo</vendor>
+    <vendorCode>0560 8311</vendorCode>
+    <picture>https://www.souz-pribor.ru/upload/iblock/9e2/9e2ead5b994e518ba95e38107de4028f.jpg</picture>
+    <price>8505</price>
+    <currencyId>RUR</currencyId>
+    <param name="Артикул">0560 8311</param>
+    <param name="Код товара">12387</param>
+  </offer>
+  <offer id="70514" available="true">
+    <name>APPA 62</name>
+    <typePrefix>мультиметр</typePrefix>
+    <url>https://www.souz-pribor.ru/product/appa-62/</url>
+    <categoryId>482</categoryId>
+    <vendor>APPA</vendor>
+    <vendorCode />
+    <picture>https://www.souz-pribor.ru/upload/iblock/288/0poqr2wi9wcq6ic7vb4p1ae3yi2r8mbg/IMG_1600_1.jpg</picture>
+    <price>8685</price>
+    <currencyId>RUR</currencyId>
+    <param name="Код товара">3762</param>
+  </offer>
+</selected_offers>

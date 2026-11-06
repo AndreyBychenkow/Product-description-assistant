@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#7255e9"><title>ТехРедактор — API</title><link rel="stylesheet" href="/assets/ui.css"></head>
+<body><main class="docs-shell">
+<a class="docs-back" href="/">← В студию карточек</a>
+<h1>Документация API</h1>
+<p class="lead">Простой интерфейс для работы с фактами и генерации карточек. Все стили, скрипты и шрифт включены в приложение — без внешнего CDN.</p>
+<section><h2>Приложение отдельно. Модель отдельно.</h2><p>В <code>APP_MODE=demo</code> работают проверка входа, экспорт и сохраненные реальные примеры. Новые ответы не генерируются. Приложение не устанавливает и не скачивает модели.</p><p>Для новой генерации задайте в <code>.env</code> режим <code>llm</code>, адрес <code>LLM_BASE_URL</code>, ID <code>LLM_MODEL</code> и <code>LLM_API_KEY</code>, если он требуется. Основной профиль — <code>openai_compatible</code>. После изменения настроек перезапустите сервер.</p><p>Сохраненный ответ имеет <code>origin=saved_example</code>, новая обработка — <code>origin=live</code>. Факт вызова модели уточняется по <code>metadata.mode</code> и дате генерации. Ключи в JSON товара не вводятся.</p></section>
+<section><h2>Методы</h2><table><thead><tr><th>Метод</th><th>Путь</th><th>Назначение</th></tr></thead><tbody>
+<tr><td><span class="method">GET</span></td><td><code>/health</code></td><td>Настройки, режим и счетчик. Полный API-ключ не возвращается; наличие настроек не является отдельной проверкой доступности модели.</td></tr>
+<tr><td><span class="method">POST</span></td><td><code>/api/inspect</code></td><td>Проверка JSON, фактов и пропусков. Без обращения к LLM.</td></tr>
+<tr><td><span class="method">POST</span></td><td><code>/api/generate</code></td><td>Новая генерация: <code>result</code>, <code>markdown</code> и происхождение ответа. Время зависит от выбранного API.</td></tr>
+<tr><td><span class="method">GET</span></td><td><code>/api/examples</code></td><td>Два исходных товарных примера.</td></tr>
+<tr><td><span class="method">GET</span></td><td><code>/api/examples/{slug}</code></td><td>Входной JSON: <code>testo-830-t1</code> или <code>appa-62</code>.</td></tr>
+<tr><td><span class="method">GET</span></td><td><code>/api/examples/{slug}/result</code></td><td>Сохраненный реальный результат. Новый запрос к модели не делается.</td></tr>
+</tbody></table></section>
+<section><h2>Пример запроса</h2><pre id="curl">curl -X POST http://127.0.0.1:8010/api/generate \
+  -H "Content-Type: application/json" \
+  --data-binary @examples/inputs/testo-830-t1.json</pre><p>Основные поля: <code>name</code>, <code>manufacturer</code>, плоский словарь <code>specs</code> и <code>description</code>. Неизвестные значения — <code>null</code>. Необязательно: <code>expected_specs</code>, <code>source_urls</code>, <code>source_warnings</code>, <code>target_audience</code>, <code>use_cases</code>. Ссылки источников сервером не скачиваются.</p><p>Спецификация OpenAPI: <a href="/openapi.json">открыть JSON →</a>.</p></section>
+<section><h2>Ошибки без неприятных сюрпризов</h2><p><code>503 / demo_mode</code> — выбран просмотр без новой генерации. <code>422</code> — некорректный JSON/структура, <code>413</code> — больше 128 КиБ. <code>502/503/504</code> — ошибка доступа, квоты, сети, таймаута или результата модели.</p><p>Ошибка возвращается в <code>error</code> с безопасными <code>code</code>, <code>message</code> и подробностями проверки. Секретные данные провайдера не печатаются. Подмены ошибки готовым примером нет.</p><p>Бедный вход → <code>status=insufficient_data</code>, <code>metadata.attempts=0</code>. <code>needs_review</code> означает, что черновик содержит поля для уточнения, а не ошибку соединения. Для короткой реальной проверки API: <code>python -m scripts.check_connection</code>.</p></section>
+<section><details><summary>Все схемы входа и выхода</summary><pre id="schema">Загружаем спецификацию…</pre></details><small>Данные загружаются из этого же приложения, не из внешней библиотеки.</small></section>
+</main><script>
+document.getElementById('curl').textContent='curl -X POST '+window.location.origin+'/api/generate \\\n  -H "Content-Type: application/json" \\\n  --data-binary @examples/inputs/testo-830-t1.json';
+fetch('/openapi.json').then(r=>r.json()).then(x=>{document.getElementById('schema').textContent=JSON.stringify(x.components.schemas,null,2)}).catch(()=>{document.getElementById('schema').textContent='Не удалось загрузить OpenAPI. Откройте /openapi.json напрямую.'});
+</script></body></html>

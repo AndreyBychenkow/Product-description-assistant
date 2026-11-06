@@ -1,0 +1,37 @@
+{
+  "checked_at": "2026-11-06T08:06:10.701443+00:00",
+  "provider": "OpenRouter",
+  "model": "nvidia/nemotron-3.5-super-vl:free",
+  "mock_used": false,
+  "items": [
+    {
+      "id": "testo-830-t1",
+      "status": "generated",
+      "draft_status": "needs_review",
+      "validation_passed": true,
+      "attempts": 1,
+      "elapsed_seconds": 5.22,
+      "usage": {
+        "prompt_tokens": 1912,
+        "completion_tokens": 656,
+        "total_tokens": 2568
+      }
+    },
+    {
+      "id": "appa-62",
+      "status": "generated",
+      "draft_status": "needs_review",
+      "validation_passed": true,
+      "attempts": 1,
+      "elapsed_seconds": 4.65,
+      "usage": {
+        "prompt_tokens": 2217,
+        "completion_tokens": 783,
+        "total_tokens": 3000
+      }
+    }
+  ],
+  "all_generated": true,
+  "response_format": "json_schema",
+  "max_output_tokens": 4096
+}
